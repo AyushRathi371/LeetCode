@@ -1,0 +1,22 @@
+class Solution {
+    public List<Integer> rows(int num){
+        List<Integer> row = new ArrayList<>();
+        int n =1;
+        row.add(n);
+        for(int i=1;i<num;i++){
+            n *= (num-i);
+            n /= (i);
+            row.add(n);
+        }
+        return row;
+    }
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> list = new ArrayList<>();
+        
+        for(int i=1;i<=numRows;i++){
+            list.add(rows(i));
+
+        }
+        return list;
+    }
+}
