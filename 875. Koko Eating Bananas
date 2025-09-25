@@ -1,0 +1,31 @@
+class Solution {
+    public boolean canFinish(int[] piles,int k,int h){
+        long hourNeeded =0;
+        for(int p :piles){
+            hourNeeded += (p+k-1)/k;
+        }
+        return hourNeeded <=h;
+    }
+    public int minEatingSpeed(int[] piles, int h) {
+        int n = piles.length;
+        int max=0;
+        for(int pile :piles){
+            max= Math.max(pile,max);
+        }
+        int low =1;
+        int high = max;
+        int ans =high;
+
+        while(low<=high){
+            int mid =(low+high)/2;
+
+            if(canFinish(piles,mid,h)){
+                ans = mid;
+                high =mid-1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
+}
