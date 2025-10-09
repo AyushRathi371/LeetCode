@@ -1,0 +1,39 @@
+class Solution {
+    public boolean isPossible(int[] nums,int t,int k){
+        int sum =0;
+        int z=0;
+        for(int s:nums){
+            sum +=s;
+            if(sum > t){
+                sum =s;
+                z++;
+            }
+        }
+        if(sum>0)z++;
+        return z <= k;
+    }
+    public int splitArray(int[] nums, int k) {
+        int n = nums.length;
+        if(n < k) return -1;
+        
+        int sum =0;
+        int max = Integer.MIN_VALUE;
+        for(int s : nums){
+            max = Math.max(max,s);
+            sum +=s;
+        }
+
+        int low =max;
+        int high =sum;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(isPossible(nums,mid,k)){
+                high = mid -1;
+            }else{
+                low = mid+1;
+            }
+        }
+        return low;
+    }
+}
