@@ -1,0 +1,50 @@
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        int n =s.length();
+        int m = goal.length();
+        int cnt =0;
+        if(n!=m) return false;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int idx =-1;
+        for(int i=0;i<n;i++){
+            if(s.charAt(0)==goal.charAt(i)){
+                map.put(cnt,i);
+                idx =i;
+                cnt ++;
+            }
+        }
+        if(idx ==-1){
+            return false;
+        }
+        if(cnt==1){
+        for(int i = idx;i<n;i++){
+            if(s.charAt(i-idx) != goal.charAt(i)) return false;
+        }
+
+        for(int i=0;i<idx;i++){
+            if(s.charAt(n-idx +i) !=goal.charAt(i)) return false;
+        }
+        }else{
+            for(int j=0;j<cnt;j++){
+                idx =map.get(j);
+                boolean match = true;
+                
+                for(int i = idx;i<n;i++){
+                    if(s.charAt(i-idx) != goal.charAt(i)){
+                        match = false;
+                    }
+                }
+
+                for(int i=0;i<idx;i++){
+                    if(s.charAt(n-idx +i) !=goal.charAt(i)){
+                        match = false;
+                    }
+                }
+                if(match) return true;
+            }
+            return false;
+        }
+
+        return true;
+    }
+}
