@@ -1,0 +1,37 @@
+class Solution {
+    public boolean canBeEqual(String s1, String s2) {
+        if(s1.equals(s2)){
+            return true;
+        }
+        StringBuilder sb = new StringBuilder(s1);
+        
+        char t1 = s1.charAt(0);
+        char t2 = s1.charAt(1);
+        char t3 = s1.charAt(2);
+        char t4 = s1.charAt(3);
+
+        sb.setCharAt(0,t3);
+        sb.setCharAt(2,t1);
+        if(sb.toString().equals(s2)){
+            return true;
+        }
+
+        StringBuilder sb1 = new StringBuilder(s1);
+        sb1.setCharAt(1,t4);
+        sb1.setCharAt(3,t2);
+        if(sb1.toString().equals(s2)){
+            return true;
+        }
+        StringBuilder sb2 = new StringBuilder(s1);
+        sb2.setCharAt(0,t3);
+        sb2.setCharAt(2,t1);
+        sb2.setCharAt(1,t4);
+        sb2.setCharAt(3,t2);
+        if(sb2.toString().equals(s2)){
+            return true;
+        }
+
+        return false;
+        
+    }
+}
