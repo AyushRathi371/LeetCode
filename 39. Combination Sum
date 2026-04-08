@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        int n = candidates.length;
+
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> sub = new ArrayList<>();
+        return combinations(candidates,target,res,sub,0,0);
+    }
+
+    List<List<Integer>> combinations(int[] arr,int k,List<List<Integer>> list,List<Integer> sub,int sum,int i){
+        int n  =arr.length;
+        if(i>=n){
+            return list;
+        }
+        if(sum >k){
+            return list;
+        }
+        if(sum == k){
+            list.add(new ArrayList<>(sub));
+            return list;
+
+        }
+
+        sum += arr[i];
+        sub.add(arr[i]);
+
+        list = combinations(arr,k,list,sub,sum,i);
+
+        sum -= arr[i];
+        sub.remove(sub.size()-1);
+
+        list = combinations(arr,k,list,sub,sum,i+1);
+
+        return list;
+
+    }
+}
