@@ -1,0 +1,23 @@
+class Solution {
+    public int f(int[] nums,int k){
+        
+        int sum=0,r=0,l=0,cnt=0;
+        while(r<nums.length){
+            if(nums[r]%2 ==1){
+                cnt++;
+            }
+            while(cnt>k && k!=-1){
+                if(nums[l]%2 ==1)cnt--;
+                l++;
+            }
+           
+            sum += (r-l+1);
+            r++;
+          
+        }
+        return sum;
+    }
+    public int numberOfSubarrays(int[] nums, int k) {
+        return f(nums,k) - f(nums,k-1);
+    }
+}
